@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Cost Forecasting</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Fuel Cost Forecasting</h1>
+
+    <!-- <div>
+        <label for="fuelType">Select Fuel Type:</label>
+        <select id="fuelType" onchange="updateChart()">
+            <option value="All">All</option>
+            <option value="Solid">Solid Fuels</option>
+            <option value="Gas">Gas</option>
+            <option value="Electricity">Electricity</option>
+            <option value="Liquid">Liquid Fuels</option>
+        </select>
+    </div> -->
+    <div class="options">
+        <input type="radio" name="mode" id="history" onclick="toggleControls(true)" checked>
+        <label for="history">Historical</label>
+        <input type="radio" name="mode" id="forecast" onclick="toggleControls(false)">
+        <label for="forecast">Forecasting</label>
+    </div>
+
+
+    <div class="controls">
+        <button onclick="changeYear(-1)">Previous</button>
+        <button onclick="changeYear(1)">Next</button>
+        <label for="yearSelector">Select Year:</label>
+        <select id="yearSelector" onchange="updateChart()">
+            <option value="1996">1996</option>
+            <option value="1997">1997</option>
+            <option value="1998">1998</option>
+            <option value="1999">1999</option>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+        </select>
+    </div>
+
+    <canvas id="Chart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/forcaster.js"></script>
+<script>
+    
+
+          
+         document.addEventListener('DOMContentLoaded', updateChart());
+      
+      
+         function toggleControls(showControls) {
+          const controls = document.querySelector('.controls');
+          controls.style.display = showControls ? 'flex' : 'none';
+          updateChart();
+      }
+      function changeYear(offset) {
+          const yearSelector = document.getElementById('yearSelector');
+          const currentYearIndex = yearSelector.selectedIndex;
+          const newIndex = currentYearIndex + offset;
+      
+          if (newIndex >= 0 && newIndex < yearSelector.options.length) {
+              yearSelector.selectedIndex = newIndex;
+            
+              updateChart();
+          }
+      }
+</script>
+</body>
+</html>
